@@ -1,0 +1,11 @@
+a=int(input("Enter a number: "))
+for i in range(a):
+    for j in range(i):
+        print("* ",end=" ")
+    
+    print()
+for j in range(a):
+    for l in range(a-j):
+        print("* ",end=" ")
+    
+    print()
