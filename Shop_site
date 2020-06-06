@@ -1,11 +1,13 @@
-from tkinter import *
+#GUI Program
+
+from tkinter import *  #Tkinter :- is used to create GUI applications
 
 box=Tk()
 
 #Frames
 
 fr1=Frame(box)
-fr1.pack()
+fr1.pack()       # Pack function:- converts a given list of values into their corresponding string representation(is for seeing the box and buttons)
 fr2=Frame(box)
 fr2.pack()
 
@@ -13,39 +15,41 @@ box.title("Python Class")
 
 #Requirement fields
 
-Ur = Label(fr1,text = 'Requirement')
-Ur.pack(side = 'left')
+customer = Label(fr1,text = 'Requirement')    #Label : used to specify the container box where we can place the text or images
+customer.pack(side = 'left')
 
 req = Entry(fr1,width = 30)
 req.pack()
 
+items=['pencil','eraser','apple','book']
+print(f'Exited list is {items}')
 
-def fun():
+#Defining Sell & Buy functions
+
+def sell():
     Ureq=req.get()
     req.delete(0,END)
-    print(f'List is  : {Ureq}')
-#    return Ureq
+    items.append(Ureq)
+    print(f'item added is: {Ureq}')
+    if items == Ureq:
+        print("Item already exists in list. Enter other item to append!")
+    else:
+        print(f'new list is: {items}')
 
 
+def buy():
+    Ureq=req.get()
+    req.delete(0,END)
+    items.remove(Ureq)
+    print(f'Removed item is: {Ureq} \n New list is:{items}')
 
-rbu = Button(fr2,text='Sell',bg='red',fg='black',command=fun)
+#Buttons to append or remove items
+
+rbu = Button(fr2,text='Sell',bg='red',fg='black',command=sell)
 rbu.pack(side='left')
 
-#list=items.fun()
-#print(list)
 
-
-#def remove():
-#    Ureq=req.get()
-#    req.delete(0,END)
-#    if list == req:
-#        list.delete(0,END)
-#        print(f'List is  : {Ureq}')
-#    else:
-#        print("Item isn't in list!")
-
-
-#gbu = Button(fr2,text='Buy',bg='green',fg='black',command= remove)
-#gbu.pack(side='right')
+gbu = Button(fr2,text='Buy',bg='green',fg='black',command= buy)
+gbu.pack(side='right')
 
 box.mainloop()
