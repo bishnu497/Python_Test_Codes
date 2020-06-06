@@ -1,0 +1,46 @@
+from tkinter import *
+
+box=Tk()
+
+#Frames
+
+fr1=Frame(box)
+fr1.pack()
+fr2=Frame(box)
+fr2.pack()
+
+box.title("Python Class")
+
+#Requirement fields
+
+Ur = Label(fr1,text = 'Requirement')
+Ur.pack(side = 'left')
+
+req = Entry(fr1,width = 30)
+req.pack()
+
+
+def fun():
+    Ureq=req.get()
+    req.delete(0,END)
+    print(f'List is  : {Ureq}')
+#    return Ureq
+
+
+
+rbu = Button(fr2,text='Sell',bg='red',fg='black',command=fun)
+rbu.pack(side='left')
+
+#list=items.fun()
+#print(list)
+
+
+#def remove():
+#    Ureq=req.get()
+#    req.delete(0,END)
+#    if list == req:
+#        list.delete(0,END)
+#        print(f'List is  : {Ureq}')
+#    else:
+#        print("Item isn't in list!")
+
