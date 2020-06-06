@@ -44,3 +44,8 @@ rbu.pack(side='left')
 #    else:
 #        print("Item isn't in list!")
 
+
+#gbu = Button(fr2,text='Buy',bg='green',fg='black',command= remove)
+#gbu.pack(side='right')
+
+box.mainloop()
