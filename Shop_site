@@ -1,10 +1,17 @@
-#GUI Program
+# GUI Program
 
 from tkinter import *  #Tkinter :- is used to create GUI applications
+from tkinter import messagebox
+
+def msg():
+    m=messagebox.askquestion(text="Are you sure? ")
+    print(m)
 
 box=Tk()
 
-#Frames
+
+
+# Frames
 
 fr1=Frame(box)
 fr1.pack()       # Pack function:- converts a given list of values into their corresponding string representation(is for seeing the box and buttons)
@@ -13,43 +20,48 @@ fr2.pack()
 
 box.title("Python Class")
 
-#Requirement fields
+# Requirement fields
 
 customer = Label(fr1,text = 'Requirement')    #Label : used to specify the container box where we can place the text or images
 customer.pack(side = 'left')
 
-req = Entry(fr1,width = 30)
+req = Entry(fr1,width = 30,bg='pink')
 req.pack()
 
 items=['pencil','eraser','apple','book']
 print(f'Exited list is {items}')
 
-#Defining Sell & Buy functions
-
-def sell():
-    Ureq=req.get()
-    req.delete(0,END)
-    items.append(Ureq)
-    print(f'item added is: {Ureq}')
-    if items == Ureq:
-        print("Item already exists in list. Enter other item to append!")
-    else:
-        print(f'new list is: {items}')
-
+# Defining functions
 
 def buy():
     Ureq=req.get()
+    Ureq=str(Ureq.lower())
     req.delete(0,END)
+    if (items.count(Ureq)<=1):
+        print("Item already exists in list. Enter other item to buy!")
+
+    print(f'item to be add is: {Ureq}')
+    items.append(Ureq)
+    print(f'list is: {items} ')
+
+def sell():
+    Ureq=req.get()
+    Ureq=str(Ureq.lower())
+    req.delete(0,END)
+    if(items.count(Ureq)>=1):
+        print("Item isn't in the list. Enter another item to sell!")
+
+    print(f'Item to be remove is: {Ureq}')
     items.remove(Ureq)
-    print(f'Removed item is: {Ureq} \n New list is:{items}')
+    print(f' New list is:{items}')
 
-#Buttons to append or remove items
-
-rbu = Button(fr2,text='Sell',bg='red',fg='black',command=sell)
-rbu.pack(side='left')
-
+# Buttons to append or remove items
 
 gbu = Button(fr2,text='Buy',bg='green',fg='black',command= buy)
-gbu.pack(side='right')
+gbu.pack(side='left')
+
+rbu = Button(fr2,text='Sell',bg='red',fg='black',command=sell)
+rbu.pack(side='right')
+
 
 box.mainloop()
