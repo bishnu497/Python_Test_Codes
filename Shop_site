@@ -18,7 +18,7 @@ fr1.pack()       # Pack function:- converts a given list of values into their co
 fr2=Frame(box)
 fr2.pack()
 
-box.title("Python Class")
+box.title("Bishnu's Basket")
 
 # Requirement fields
 
