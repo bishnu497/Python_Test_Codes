@@ -37,7 +37,7 @@ def buy():
     Ureq=req.get()
     Ureq=str(Ureq.lower())
     req.delete(0,END)
-    if (items.count(Ureq)<=1):
+    if (items.count(Ureq)>=1):
         print("Item already exists in list. Enter other item to buy!")
 
     print(f'item to be add is: {Ureq}')
@@ -48,7 +48,7 @@ def sell():
     Ureq=req.get()
     Ureq=str(Ureq.lower())
     req.delete(0,END)
-    if(items.count(Ureq)>=1):
+    if(items.count(Ureq)<=1):
         print("Item isn't in the list. Enter another item to sell!")
 
     print(f'Item to be remove is: {Ureq}')
