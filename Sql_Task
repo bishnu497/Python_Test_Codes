@@ -1,0 +1,56 @@
+import sqlite3
+from tkinter import *
+from tkinter import messagebox
+
+box=Tk()
+box.title("Bishnu's Basket DB" )
+
+En_stu=LabelFrame(box,text="Bishnu's Basket DB")
+En_stu.pack()
+
+con = sqlite3.connect("Bishnu's Basket DB")
+c = con.cursor()
+
+
+def msg():
+    m=messagebox.askquestion('Select','Are you sure?')
+    if(m=='yes'):
+        box.quit()
+
+def stu():
+
+    #c.execute("CREATE TABLE STUDENT (R_NO int, F_name Text, L_name Text)")
+    #c.execute("INSERT INTO STUDENT VALUES(1, 'Bishnu', 'sahu')")
+    #c.execute("INSERT INTO STUDENT VALUES(2, 'Asish', 'kumar')")
+    #c.execute("INSERT INTO STUDENT VALUES(3, 'Tilak', 'raj')")
+    con = sqlite3.connect("Bishnu's Basket DB")
+    con.commit()
+    c.execute("SELECT DISTINCT * FROM STUDENT")
+    print(c.fetchall(),end= '\n ')
+    con.close()
+
+
+def emp():
+
+    #c.execute("CREATE TABLE EMPLOYEE (E_NO int, F_name Text, L_name Text)")
+    #c.execute("INSERT INTO EMPLOYEE VALUES(1, 'Bishnu', 'sahu')")
+    #c.execute("INSERT INTO EMPLOYEE VALUES(2, 'Asish', 'kumar')")
+    #c.execute("INSERT INTO EMPLOYEE VALUES(3, 'Tilak', 'raj')")
+    con = sqlite3.connect("Bishnu's Basket DB")
+    con.commit()
+    c.execute("SELECT DISTINCT * FROM EMPLOYEE")
+    print(c.fetchall(),end= '\n ')
+    con.close()
+
+
+Sbu=Button(box,text= "Student",bg='white',fg='black',command= stu)
+Sbu.pack(side= 'left')
+
+Ebu=Button(box,text= "Employee",bg='white',fg='black',command= emp)
+Ebu.pack(side= 'right')
+
+Qbu = Button(box,text='Quit',command=msg)
+Qbu.pack()
+
+
+box.mainloop()
