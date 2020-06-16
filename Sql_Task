@@ -7,7 +7,6 @@ box.title("Bishnu's Basket DB" )
 
 En_stu=LabelFrame(box,text="Bishnu's Basket DB")
 En_stu.pack()
-
 con = sqlite3.connect("Bishnu's Basket DB")
 c = con.cursor()
 
@@ -19,14 +18,16 @@ def msg():
 
 def stu():
 
-    #c.execute("CREATE TABLE STUDENT (R_NO int, F_name Text, L_name Text)")
+    #c.execute("CREATE TABLE STUDENT (E_NO int, F_name Text, L_name Text)")
     #c.execute("INSERT INTO STUDENT VALUES(1, 'Bishnu', 'sahu')")
     #c.execute("INSERT INTO STUDENT VALUES(2, 'Asish', 'kumar')")
     #c.execute("INSERT INTO STUDENT VALUES(3, 'Tilak', 'raj')")
     con = sqlite3.connect("Bishnu's Basket DB")
-    con.commit()
     c.execute("SELECT DISTINCT * FROM STUDENT")
-    print(c.fetchall(),end= '\n ')
+    lst=c.fetchall()
+    for i in lst:
+        print(i)
+    con.commit()
     con.close()
 
 
@@ -37,20 +38,43 @@ def emp():
     #c.execute("INSERT INTO EMPLOYEE VALUES(2, 'Asish', 'kumar')")
     #c.execute("INSERT INTO EMPLOYEE VALUES(3, 'Tilak', 'raj')")
     con = sqlite3.connect("Bishnu's Basket DB")
-    con.commit()
+    d=con.cursor()
     c.execute("SELECT DISTINCT * FROM EMPLOYEE")
-    print(c.fetchall(),end= '\n ')
+    lst=c.fetchall()
+    for i in lst:
+        print(i)
+    con.commit()
     con.close()
 
+b=Frame(box)
+Sbu=Button(b,text= "Student",bg='white',fg='black',command= stu)
+Sbu.grid(row=0, column=0,padx=10,pady=10 )
 
-Sbu=Button(box,text= "Student",bg='white',fg='black',command= stu)
-Sbu.pack(side= 'left')
-
-Ebu=Button(box,text= "Employee",bg='white',fg='black',command= emp)
-Ebu.pack(side= 'right')
+Ebu=Button(b,text= "Employee",bg='white',fg='black',command= emp)
+Ebu.grid(row=0, column=1,padx=10,pady=10)
 
 Qbu = Button(box,text='Quit',command=msg)
 Qbu.pack()
 
+
+#mainwindow= Tk()
+mainframe=Frame(box, bg='wheat')
+mainframe.pack(fill = 'both',expand= True)
+
+horizontal_frame=Frame(box)
+
+lable=Label(horizontal_frame,text='E_no', bg='grey', fg='pink',padx=10,pady=10)
+lable.grid(row=0,column=1,padx=10,pady=10)
+lable=Label(horizontal_frame,text='Fname', bg='grey', fg='pink',padx=10,pady=10)
+lable.grid(row=0,column=2,padx=10,pady=10)
+lable=Label(horizontal_frame,text='Lname', bg='grey', fg='pink',padx=10,pady=10)
+lable.grid(row=0,column=3,padx=10,pady=10)
+
+
+horizontal_frame.grid_columnconfigure(1,weight=1)
+horizontal_frame.grid_columnconfigure(2,weight=1)
+horizontal_frame.grid_columnconfigure(3,weight=1)
+
+horizontal_frame.pack(fill="x")
 
 box.mainloop()
